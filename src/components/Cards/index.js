@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImageBackground, TouchableOpacity } from 'react-native';
+import api from '~/services/api';
 
 import { Container, InfoProduct, NameProduct } from './styles';
 
 export default function Cards({ navigation, data }) {
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    async function loadProducts() {
+      const response = await api.get(`products/${data.id}`);
+      setProducts(response.data);
+    }
+    loadProducts();
+  }, [data.id]);
+
   return (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate('Product', {
-          data,
+          products,
         })
       }
     >

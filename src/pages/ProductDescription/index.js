@@ -15,25 +15,15 @@ import {
 } from './styles';
 
 export default function ProductDescription({ navigation }) {
-  const info = navigation.getParam('data');
-  const { id } = info;
-  const [products, setProducts] = useState();
-
-  useLayoutEffect(() => {
-    async function loadProducts() {
-      const response = await api.get(`products/${id}`);
-      setProducts(response.data);
-    }
-    loadProducts();
-  }, [id]);
-  console.log(products);
+  const info = navigation.getParam('products');
+  console.log(info);
 
   return (
     <Container>
       <BoxImageProduct>
         <ImageBackground
-          style={{ height: '100%' }}
           source={{ uri: info.files.map(img => img.url)[0] }}
+          style={{ height: '100%' }}
           opacity={0.9}
         />
       </BoxImageProduct>
@@ -42,8 +32,28 @@ export default function ProductDescription({ navigation }) {
           <NameProduct>{info.name}</NameProduct>
           <Info>
             Categorias:
-            <TitleInfo>{products.categories.map(c => c.title)}</TitleInfo>
+            <TitleInfo> {info.categories.map(c => c.title)}</TitleInfo>
           </Info>
+          <Info>
+            Sub-Categorias:
+            <TitleInfo> {info.subcategories.map(sb => sb.title)} </TitleInfo>
+          </Info>
+          <Info>
+            Atributos:
+            <TitleInfo> {info.attributes.map(at => at.title)} </TitleInfo>
+          </Info>
+          <Info>
+            Aplicações:
+            <TitleInfo>
+              {' '}
+              {info.applications.map(ap => ap.description)}
+            </TitleInfo>
+          </Info>
+          <Info>
+            Característcas:
+            <TitleInfo> {info.features.map(f => f.description)} </TitleInfo>
+          </Info>
+
           <ButtonBack onPress={() => navigation.navigate('Main')}>
             <TextBack>Voltar</TextBack>
           </ButtonBack>

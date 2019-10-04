@@ -7,7 +7,7 @@ export const Container = styled.View`
 `;
 export const BoxImageProduct = styled.View`
   background: #7239f2;
-  height: 70%;
+  height: 60%;
   margin-top: auto;
 `;
 export const ContainerBox = styled.View`
@@ -36,6 +36,7 @@ export const NameProduct = styled.Text`
 export const Info = styled.Text`
   font-size: 14px;
   color: #333;
+  margin-bottom: 10px;
 `;
 
 export const TitleInfo = styled.Text`

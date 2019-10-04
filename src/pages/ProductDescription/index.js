@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { ImageBackground } from 'react-native';
 import api from '~/services/api';
 
@@ -19,13 +19,14 @@ export default function ProductDescription({ navigation }) {
   const { id } = info;
   const [products, setProducts] = useState();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     async function loadProducts() {
       const response = await api.get(`products/${id}`);
       setProducts(response.data);
     }
     loadProducts();
   }, [id]);
+  console.log(products);
 
   return (
     <Container>
@@ -41,7 +42,7 @@ export default function ProductDescription({ navigation }) {
           <NameProduct>{info.name}</NameProduct>
           <Info>
             Categorias:
-            <TitleInfo>c</TitleInfo>
+            <TitleInfo>{products.categories.map(c => c.title)}</TitleInfo>
           </Info>
           <ButtonBack onPress={() => navigation.navigate('Main')}>
             <TextBack>Voltar</TextBack>

@@ -8,6 +8,7 @@ module.exports = {
   plugins: [
     [
       'babel-plugin-root-import',
+      'emotion',
       {
         rootPathSuffix: 'src',
       },

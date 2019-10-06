@@ -16,7 +16,7 @@ export const ContainerBox = styled.View`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   width: 100%;
-  height: 40%;
+  height: 60%;
 `;
 export const BoxProduct = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
